@@ -1,6 +1,6 @@
-@import "libs"
-@import "vars"
-@import "sprite"
+@import libs
+@import vars
+@import sprite
 
 *
 	-webkit-box-sizing: border-box
@@ -33,13 +33,31 @@ html, body
 	padding: 0
 
 body
+	min-height: 100vh
 	font-size: 16px
 	min-width: 320px
 	position: relative
-	line-height: 1.65
+	line-height: 1.4
 	font-family: $font
 	overflow-x: hidden
+	background-image: url(../img/noise-bg.jpg)
+	background-repeat: repeat
 	opacity: 1
+	& > svg
+		display: none
+	&:after 
+		z-index: -1
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		opacity: 0
+		background-color: rgba(77,77,77,.95)
+		transition: all .4s ease
+	&.nav-opened
+		overflow-y: hidden
 
 a
 	&:hover,
@@ -48,13 +66,44 @@ a
 		text-decoration: none
 
 p
-	margin: 1em 0
+	margin: 0 0 1em 0
+	color: #684639
+	font-size: 14px
+	line-height: 1.45
 
 b
-	font-weight: 600
+	font-weight: 700
+
+h1, h2, h3, h4, h5, h6
+	color: #684639
+	font-weight: 700
+
+h1
+	font-size: 30px
+
+h2
+	font-size: 26px
+
+h3
+	font-size: 22px
+	
+h4
+	font-size: 16px
+
+h5
+	font-size: 14px
+
+h6
+	font-size: 12px
+
 
 .wrapper
 	position: relative
+	display: flex
+	min-height: 100vh
+	flex-direction: column
+	.main
+		flex: 1
 
 .img-responsive
 	display: block
@@ -75,82 +124,84 @@ b
 	&:after 
 		clear: both
 
-
 .btn
 	display: inline-block
-	height: 50px
 	min-width: 170px
 	margin: .6em 0
-	padding: 0 35px
-	line-height: 46px
+	padding: 12px 30px
 	border-radius: 0
-	border: 1px solid transparent
-	background-color: transparent
+	border: none
+	background-color: rgba(39,174,95,1)
+	background: linear-gradient(to left, rgba(39,174,95,1) 0%, rgba(46,194,110,1) 100%)
 	color: #fff
-	font-size: 16px
-	font-weight: 500
+	font-size: 14px
+	font-weight: 600
 	text-align: center
+	border-radius: 18px
+	cursor: pointer
 	transition: all .25s ease
-	&.btn-med
-		min-width: 210px
-	&.btn-wt,
-	&.btn-t,
-		border: 1px solid #fff
-		&:hover,
-		&:focus,
-		&:active
-			border-color: $accent
-			background-color: $accent
-			color: #fff
-			outline: none
-	&.btn-t
-		border: 1px solid $accent
-		color: $accent
-	&.btn-orange
-		border: 1px solid $accent
+	&.btn-simple
+		border-radius: 4px
+	&:hover,
+	&:focus,
+	&:active,
+		background-color: #29a45d
+		outline: none
+		background: linear-gradient(to left, #22914c 0%, rgba(46,194,110,1) 100%) !important
 		color: #fff
-		background-color: $accent
+	&.btn-orange
+		background: linear-gradient(135deg, rgb(234,179,38) 0%,rgb(249,186,29) 100%);
 		&:hover,
 		&:focus,
 		&:active
-			border: 1px solid $accent-h
-			background-color: $accent-h
-			outline: none
-	&.btn-w
-		border: 1px solid #fff
-		color: $accent
-		background-color: #fff
-		&:hover,
-		&:focus,
-		&:active
-			color: $accent
-			background-color: transparent
-			outline: none
+			background: linear-gradient(135deg, rgb(229,131,39) 0%,rgb(249,186,29) 100%) !important;
+			color: #fff
 
 .btn-group
 	text-align: center
 
 .form-group
-	margin-bottom: 20px
+	margin-bottom: 15px
 
 input[type="text"],
 input[type="email"],
-input[type="phone"],
+input[type="tel"],
 input[type="password"]
-	width: 255px
-	height: 50px
-	padding: 0 20px 0 30px
-	line-height: 46px
-	border: 1px solid #85929c
-	color: #fff
+	width: 250px
+	height: 42px
+	padding: 0 18px
+	line-height: 42px
+	border: 1px solid #efefef
+	color: #666
+	font-size: 14px
 	box-shadow: none
-	background-color: transparent
-	border-radius: 0
+	background-color: #fbfbfb
+	border-radius: 2px
 	-webkit-appearance: none
 	transition: all .25s ease
 	&:focus
-		border: 1px solid #fff
+		border: 1px solid #2EC16D
 		outline: none
+
+textarea
+	width: 100%
+	min-height: 115px
+	padding: 10px 18px
+	border: 1px solid #efefef
+	color: #666
+	font-size: 14px
+	box-shadow: none
+	background-color: #fbfbfb
+	border-radius: 2px
+	transition: all .25s ease
+
+label
+	display: block
+	margin-bottom: 12px
+	font-size: 10px
+	font-family: Tahoma, sans-serif
+	text-transform: uppercase
+	color: #999
 
 input.error
 	border: 1px solid #f81d17 !important
@@ -159,22 +210,924 @@ input.error
 	white-space: nowrap
 
 .section-b
-	padding: 80px 0
+	padding: 40px 0 40px 0
 
-.section-title
+.section-header
+	padding-bottom: 10px
+	text-align: center
+
+.section-desc
+	max-width: 90%
+	margin: 0 auto
+	font-size: 14px
+	color: #684639
+
+.section-title,
+.article h1
 	margin: 0 0 20px 0
-	padding-bottom: 3px
-	padding-left: 30px
-	font-size: 28px
-	font-weight: 500
-	color: #000
+	font-size: 30px
+	font-weight: 700
+	color: #684639
 	line-height: 1.3
-	border-left: 6px solid $accent
+	text-align: center
+	svg
+		display: block
+		margin: 10px auto
+	&__white
+		color: #fff
+		svg
+			fill: #fff
+
+.article
+	padding-bottom: 25px
+	header
+		padding: 35px 0 0 0
+
+.log-i
+	width: 58px
+	height: 35px
+	fill: #684639
+	&.log-i__white
+		fill: #fff
+
+.double-arrow-i
+	display: inline-block
+	width: 18px
+	height: 18px
+	margin: 0 0 0 12px
+	vertical-align: middle
+	fill: #fff
+
+.send-mail
+	width: 25px
+	height: 25px
+	fill: #fff
+
+.top-line
+	z-index: 1
+	position: relative
+	height: 95px
+	background-image: url(../img/top-bg.jpg)
+	background-repeat: repeat-x
+	background-position: center center
+	background-size: cover
+	box-shadow: 0 3px 15px rgba(0,0,0,.4)
+
+.logo
+	margin-top: 5px
+	margin-right: 20px
+
+.contact-b
+	padding-top: 25px
+
+.contact-data
+	float: left
+	max-width: 190px
+	margin-right: 60px
+	color: #fff
+	font-size: 14px
+	&:last-child
+		max-width: inherit 
+		margin-right: 0
+		text-align: right
+	a
+		position: relative
+		color: #fff
+		font-weight: 600
+		font-size: 16px
+		line-height: 1.6
+		&:hover
+			color: #eee
+		.call-i,
+		.envelope-i
+			position: absolute
+			top: 2px
+			left: -25px
+			margin-right: 4px
+
+.call-i,
+.envelope-i
+	width: 16px
+	height: 16px
+	fill: #fff
+
+.soc
+	margin-top: -15px
+
+.soc-item
+	display: inline-block
+	width: 28px
+	height: 28px
+	& + &
+		margin-left: 5px
+
+.whatsapp-i,
+.viber-i,
+.vk-i
+	width: 28px
+	height: 28px
+	background-repeat: no-repeat
+
+.whatsapp-i
+	background-image: url(../img/social/whatsapp.svg)
+
+.vk-i
+	background-image: url(../img/social/vk.svg)
+
+.viber-i
+	background-image: url(../img/social/viber.svg)
+
+.navbar
+	width: 100%
+	height: 50px
+	padding: 0
+	background-image: url(../img/ligh-wood-bg.jpg)
+	background-position: bottom center
+	box-shadow: 0 3px 20px rgba(0,0,0,.2)
+	.container
+		position: relative
+	&-nav
+		.nav-item
+			position: relative
+			padding: 0 18px
+			&:after
+				content: ''
+				position: absolute
+				top: 50%
+				right: 0
+				height: 15px
+				margin-top: -7.5px
+				border-right: 1px solid #be9488
+			&:last-child:after
+				display: none
+			&:first-child
+				padding-left: 0
+			&.dropdown.show
+				.nav-arrow-i
+					transform: rotate(-180deg)
+		.nav-link
+			&:hover,
+			&:focus
+				color: #73493d
+
+.navbar-expand-lg 
+		.navbar-nav
+			.nav-link
+				padding-right: 0
+				padding-left: 0
+
+.nav-link
+	padding: 15px 0
+	font-size: 16px
+	font-weight: 600
+	color: #333
+	white-space: nowrap
+
+.navbar-collapse
+	position: relative
+	justify-content: space-between
+
+.dropdown-toggle::after
+	display: none
+
+.nav-arrow-i
+	width: 10px
+	height: 10px
+	fill: rgb(84,54,45)
+	margin-left: 15px
+	transition: transform .3s ease
+
+.search-form 
+	opacity: 0
+	z-index: 100
+	position: absolute
+	top: 0
+	left: 0
+	height: 0
+	width: 100%
+	transition: all .3s ease
+	.search-input
+		width: 100%
+		height: 100%
+		margin: 0
+		padding: 0 40px 0 20px
+		background: #fff
+		border-radius: 0
+		border: none			
+		color: #000
+		line-height: normal
+		box-shadow: inset 0 5px 20px rgba(0,0,0,.3)
+		&:focus
+			border: none
+			box-shadow: inset 0 5px 26px rgba(0,0,0,.3)
+			outline: none
+
+.search-btn
+	z-index: 101
+	position: relative
+	width: 25px
+	height: 25px
+	background-color: #4b3027
+	border-radius: 4px
+	border: none
+	line-height: 27px
+	cursor: pointer
+
+.search-submit
+	width: 40px
+	height: 35px
+	border: none
+	line-height: 35px
+	background-color: transparent
+	cursor: pointer
+	.search-i
+		width: 25px
+		height: 25px
+		margin-top: 4px
+		fill: #684639
+
+.search-i
+	width: 14px
+	height: 14px
+	fill: #fff
+
+.search-wrap
+	float: right
+	transition: all .4s ease
+	.search-submit
+		position: absolute
+		top: 50%
+		right: 15px
+		min-width: 25px
+		margin-top: -16px
+
+.search-wrap.in-active
+	.search-form
+		z-index: 200
+		opacity: 1
+		top: 1px
+		height: 100%
+		max-height: 50px
+		.search-input
+			padding: 10px 40px 10px 20px
+	
+.dropdown-menu
+	margin: 0
+	padding: 18px 25px
+	border-radius: 0
+	border: none
+	background-image: url(../img/ligh-wood-bg.jpg)
+	background-repeat: repeat
+	background-position: top left
+	box-shadow: 0 0 24px rgba(0,0,0,.34)
+	columns: 2 auto
+	column-gap: 50px
+		
+.dropdown-item
+	position: relative
+	display: inline-block
+	width: auto
+	padding: 3px 0 4px 25px
+	color: #462c25
+	font-size: 14px
+	font-weight: 600
+	&:before
+		content: ''
+		position: absolute
+		top: 12px
+		left: 0
+		width: 15px
+		height: 1px
+		background-color: #583f34
+	&:focus,
+	&:hover
+		text-decoration: none
+		background-color: transparent
+		color: #73493d
+
+// Promo
+
+.promo
+	width: 100%
+	color: #fff
+	&-slider
+		width: 100%
+		height: 605px
+		overflow: hidden
+	.promo-slide
+		height: 605px
+		background-position: center center
+		background-repeat: no-repeat
+		background-size: cover
+		.slide-wrap
+			display: flex
+			flex-direction: row
+			flex-wrap: wrap
+			align-items: center
+			height: 100%
+	.slide-text
+		padding-left: 100px
+	.btn
+		box-shadow: 0 0 20px rgba(0,0,0,.3)
+	.h1
+		margin-top: .4em
+		margin-bottom: .4em
+		font-size: 40px
+		font-weight: 700
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+		li
+			position: relative
+			margin: 0 0 15px 0
+			padding: 0 0 0 60px
+			font-size: 16px
+			font-weight: 600		
+			&:after
+				content: ''
+				position: absolute
+				top: 6px
+				left: 39px
+				width: 10px
+				height: 10px
+				border-radius: 50%
+				background-color: #fff
+			&:before
+				content: ''
+				position: absolute
+				top: 10px
+				left: 0
+				width: 35px
+				height: 2px
+				background-color: #fff			
+	.slick-dots
+		position: absolute
+		bottom: 10px
+		left: 0
+		width: 100%
+		text-align: center
+		li
+			display: inline-block
+			padding: 0 15px
+			&:after,
+			&:before
+				display: none
+			button
+				width: 15px
+				height: 15px
+				font-size: 0
+				background-color: #fff
+				border: none
+				cursor: pointer
+				border-radius: 50%
+				box-shadow: inset 0 2px 5px rgba(0,0,0,.3)
+			&.slick-active button
+				background: linear-gradient(to right, rgba(58,230,124,1) 0%, rgba(46,194,110,1) 100%);
+				box-shadow: none
+
+// Catalog
+
+.catalog-section
+	padding: 40px 0 20px 0
+
+.catalog
+	div[class^="col-"]
+		margin-bottom: 30px
+
+.filter
+	margin: 25px 0
+	text-align: center
+	&-item
+		display: inline-block
+		margin: 0 2px
+		padding: 6px 16px
+		background-color: transparent
+		border-radius: 25px
+		color: #684639
+		font-weight: 600
+		font-size: 14px
+		border: none
+		cursor: pointer
+		&.active
+			color: #fff
+			background-image: linear-gradient(to left, rgba(39,174,95,1) 0%, rgba(46,194,110,1) 100%)
+		&:focus
+			outline: none
+
+.card
+	height: 100%
+	border: none
+	border-radius: 0
+	background-color: #fff
+	box-shadow: 0 0 18px rgba(0,0,0,.02)
+	transition: all .3s ease
+	&:hover
+		box-shadow: 0 4px 25px rgba(0,0,0,.15)
+	.card-body
+		padding: 12px 20px 80px 20px
+	.card-title	
+		margin-bottom: .5em
+		color: #000033
+		font-size: 14px
+		font-weight: 600
+		text-align: left
+		line-height: 1.4
+	.card-img-top
+		width: auto
+		max-width: 95%
+		margin: 0 auto
+	.card-text
+		display: table
+		width: 100%
+		margin: .5em 0
+		color: #000
+		font-size: 15px
+		line-height: 1.6
+		td
+			padding: 0 10px 0 0
+			font-size: 12px
+			color: #666
+			text-align: left
+			&:last-child
+				font-weight: 600
+				color: #000033
+	.btn-group
+		display: flex
+		justify-content: space-between
+		padding-bottom: 4px
+	.card-info
+		padding-bottom: 10px
+		font-size: 12px
+		font-weight: 600
+		color: #333
+	.btn
+		min-width: 90px
+		margin: 0
+		padding: 7px 10px
+		font-size: 12px
+		color: #fff
+		border-radius: 4px !important
+	&-footer
+		position: absolute
+		bottom: 16px
+		left: 0
+		width: 100%
+		padding: 0 20px
+		background: transparent
+		border: none
+		border-radius: 0
 
 
+// Advantages
+
+.advantages
+	.section-content
+		p
+			font-size: 14px
+			color: #684639
+			text-align: center
+	&-i
+		width: 60px
+		height: 45px
+		fill: #eab227
+
+.advantages-list
+	margin: 40px 0
+	.advantages-item
+		text-align: center
+		font-size: 12px
+		font-weight: 700
+		color: #684639
+		transition: all .3s ease
+		svg
+			display: block
+			margin: 0 auto 20px auto
+			transition: all .3s ease
+		&:hover
+			svg
+				margin-top: -10px
+				fill: #684639
+
+// Work-stages
+
+.work-stages
+	padding: 40px 0 45px 0
+	background-color: #666
+	background-image: url(../img/house-bg.jpg)
+	background-repeat: no-repeat
+	background-size: cover
+	background-position: center center
+	overflow: hidden
+
+.stages-list
+	counter-reset: stages
+	margin-top: 30px
+
+.stages-item
+	color: #fff
+	font-size: 18px
+	font-weight: 600
+	text-align: center
+	&:after
+		content: ''
+		position: absolute
+		top: 65px
+		right: -65px
+		width: 130px
+		height: 1px
+		background-color: #e5e5e5
+	&-text
+		position: relative
+		display: block
+		padding-top: 15px
+	.stages-icon
+		&:before
+			z-index: 10
+			counter-increment: stages
+			content: counter(stages)
+			position: absolute
+			bottom: -20px
+			right: 60px
+			width: 32px
+			height: 32px
+			line-height: 32px
+			border-radius: 50%
+			background-color: #eeb220
+	svg
+		display: block
+		width: 54px
+		height: 54px
+		margin: 40px auto
+		fill: #fff
+		&.contract-i,
+		&.settings-i
+			position: relative
+			left: 3px
+
+.stages-list
+	div[class^="col-"]:last-child
+		.stages-item:after
+			right: 15px
+			width: 50px
+	div[class^="col-"]:first-child
+		.stages-item:before
+			content: ''
+			position: absolute
+			top: 65px
+			left: 15px
+			width: 50px
+			height: 1px
+			background-color: #e5e5e5
+
+.stages-icon
+	position: relative
+	&:after
+		content: ''
+		position: absolute
+		top: 50%
+		left: 50%
+		width: 130px
+		height: 130px
+		margin-top: -65px
+		margin-left: -65px
+		border-radius: 50%
+		border: 5px solid rgba(255,255,255,.95)
 
 
+// Feedback
+
+.feedback
+	padding-bottom: 60px
+	&-text
+		margin: 28px 20px 20px 130px
+	.section-content
+		padding-top: 25px
+
+.contact-form
+	max-width: 335px
+	margin: 0 15px
+	padding: 22px 40px 10px 40px
+	background-color: #fff
+	box-shadow: 0 3px 40px rgba(0,0,0,.04) 
+	.title
+		margin-bottom: 20px
+		font-size: 28px
+		font-weight: 700
+		color: #684639
+		text-align: center
+		line-height: 1.3
+	input[type="submit"]
+		width: 100%
+		margin: 5px 0 0 0
+		padding: 15px 30px
+		background-image: linear-gradient(to left, #27ae60 0%, #2ec26d 100%)
+		&:hover
+			background-image: linear-gradient(to left, #27ae60 0%, #229251 100%)
+	.btn-submit
+		width: 100%
+		svg
+			display: inline-block
+			vertical-align: middle
+			margin-left: 10px
 
 
+// Partners
 
-@import "media" // Всегда в конце
+.partners
+	background-image: url(../img/ligh-wood-bg.jpg)
+	&-slider
+		height: 160px
+		overflow: hidden
+	.slick-list
+		margin: 0 -20px
+	&-slide
+		height: 160px
+		line-height: 160px
+		margin: 0 20px
+		text-align: center
+		img
+			display: inline-block
+
+// Footer
+
+.copyright-section
+	display: flex
+	flex-direction: row
+	flex-wrap: wrap
+	align-items: center
+	height: 60px
+	background-image: url(../img/dark-wood-bg.jpg)
+	background-repeat: repeat-x
+	color: #fff
+	font-size: 14px
+	a
+		color: #fff
+		font-weight: 600
+
+// Contacts
+
+.contacts-row
+	padding-top: 15px
+	div[class^="col-"]:nth-child(2n)
+		text-align: center
+		.contacts-where i
+			margin: 12px auto 0 auto
+	div[class^="col-"]:nth-child(3n)
+		text-align: right
+		.contacts-where i
+			margin: 12px 0 0 auto
+	div[class^="col-"]
+		margin-bottom: 25px
+
+.contacts-where
+	position: relative
+	margin-bottom: 25px
+	font-size: 22px
+	font-weight: 600
+	color: #684639
+	i
+		display: block
+		width: 100px
+		height: 1px
+		margin-top: 12px
+		border-top: 1px solid #d2d2d2
+
+.contacts-block
+	margin-bottom: 16px
+	.soc-link
+		display: inline-block
+		margin-left: 18px
+		text-align: center
+		&:hover
+			opacity: .8
+		&:first-child
+			margin-left: 0
+	.soc-i
+		width: 24px
+		height: 24px
+		fill: #684639
+
+
+.contacts-head
+	margin-bottom: 4px
+	font-size: 16px
+	font-weight: 600
+
+.contacts-text
+	font-size: 14px
+	color: #666
+	a
+		color: #666
+
+.seo-box
+	padding: 10px 0 25px 0
+	.section-title
+		margin-bottom: 0
+		font-size: 18px
+		svg
+			width: 50px
+			margin: 5px auto
+	.section-content
+		text-align: center
+
+// Faq
+
+.faq
+	.section-content
+		padding-left: 80px
+
+.faq-b
+	padding-bottom: 6px
+	a
+		position: relative
+		display: block
+		margin-bottom: 12px
+		padding-left: 25px
+		font-size: 12px
+		font-weight: 600
+		color: #333
+		&[aria-expanded="true"] .arrow-i
+			transform: rotate(0deg)
+		.arrow-i
+			position: absolute
+			top: 2px
+			left: 0
+			width: 12px
+			height: 10px
+			fill: #333
+			transform: rotate(-90deg)
+			transition: all .3s ease
+		& + div
+			padding-left: 25px
+	p
+		font-size: 12px
+		color: #666
+
+// Breadcrumb
+
+.breadcrumb
+	margin-bottom: 0
+	padding: 25px 0 0 0
+	background-color: transparent
+	& + .section-b,
+	& + section
+		padding-top: 8px
+	ul
+		margin: 0
+		padding: 0
+		list-style-type: none
+		li
+			float: left
+			font-size: 12px
+			color: #666
+			&:after
+				content: '>'
+				margin: 0 5px
+				font-weight: 600
+			&:last-child:after
+				display: none
+			a
+				font-weight: 600
+				color: #333
+			
+
+// Hamburger
+
+.navbar-toggler
+	z-index: 10
+	position: relative
+	width: 42px
+	height: 42px
+	margin: 0
+	padding: 0
+	transition-duration: 0.5s
+	background: transparent
+	border: none
+	outline: none
+	border-radius: 0
+	cursor: pointer
+	&:focus
+			outline: none
+	.navbar-toggler-icon
+		position: absolute
+		height: 6px
+		width: 30px
+		top: 18px
+		left: 6.5px
+		border-radius: 12px
+		background-color: #482e26
+		&:before
+			position: absolute
+			width: 30px
+			height: 6px
+			background-color: #482e26
+			content: ""
+			top: -11px
+			left: 0px
+			border-radius: 12px
+			transition: all .3s ease 
+		&:after
+			position: absolute
+			width: 30px
+			height: 6px
+			background-color: #482e26
+			content: ""
+			top: 11px
+			left: 0
+			border-radius: 12px
+			transition: all .3s ease 
+	&.active
+		&:hover 
+			cursor:pointer 
+		&:focus
+			outline: none
+		.navbar-toggler-icon
+			background: transparent
+			&:before
+				transform: rotateZ(45deg) translate(9px, 6px)
+			&:after
+				transform: rotateZ(-45deg) translate(9px, -7px)
+
+.close-btn
+	display: none
+	position: absolute
+	top: 0
+	right: 0
+	width: 30px
+	height: 30px
+	border: none
+	background-color: transparent
+	cursor: pointer
+	&:after,
+	&:before
+		content: ''
+		position: absolute
+		top: 0
+		left: 0
+		width: 30px
+		height: 8px
+		background-color: #fff
+		transform: rotate(45deg)
+	&:before
+		transform: rotate(-45deg)
+	&:focus
+		outline: none
+	&:hover
+		&:after,
+		&:before
+			background-color: #eee
+	&__light
+		&:after,
+		&:before
+			content: ''
+			width: 22px
+			height: 2px
+
+// Modal
+
+.modal
+	&-content
+		background-color: #fff
+	&-body
+		padding: 25px 25px 1px 25px
+		max-width: 490px
+	&-content
+		.close-btn
+			display: block
+			top: 25px
+			right: 10px
+			&:after,
+			&:before
+				background-color: #684639
+	.contact-form
+		max-width: 100%
+		margin: 0
+		padding: 0
+		box-shadow: none
+		label
+			padding: 0 18px
+		input
+			width: 100%
+		.btn-submit
+			margin: 0.4em 0
+			padding: 8px 30px
+			border-radius: 8px
+			font-weight: 400
+
+.modal-header
+	padding: 20px 0 0 0
+	border: none
+
+.modal-title
+	margin: 0 auto
+	font-size: 24px
+	font-weight: normal 
+	color: #333
+
+.modal-backdrop
+	background-color: #434343
+	&.show
+		opacity: .63
+
+@import "media"

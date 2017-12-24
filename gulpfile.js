@@ -1,10 +1,10 @@
-var gulp           = require('gulp'),
+var   gulp           = require('gulp'),
 		gutil          = require('gulp-util' ),
 		sass           = require('gulp-sass'),
 		watch				= require('gulp-watch'),
-		svgSprite		= require('gulp-svg-sprite'),
-		cheerio			= require('gulp-cheerio'),
 		rigger			= require('gulp-rigger'),
+		cheerio			= require('gulp-cheerio'),
+		svgSprite		= require('gulp-svg-sprite'),
 		browserSync    = require('browser-sync'),
 		concat         = require('gulp-concat'),
 		uglify         = require('gulp-uglify'),
@@ -126,11 +126,6 @@ gulp.task('pic:build', function() {
 	.pipe(reload({stream: true})); 
 });
 
-gulp.task('fonts:build', function() {
-	return gulp.src(path.src.fonts)
-		.pipe(gulp.dest(path.build.fonts))
-});
-
 gulp.task('svg-sprite:build', function() {
 	return gulp.src('app/img/svg-icons/*.svg')
 		.pipe(cheerio({
@@ -138,7 +133,7 @@ gulp.task('svg-sprite:build', function() {
 				$('[fill]').removeAttr('fill');
 				$('[style]').removeAttr('style');
 			},
-			parserOptions: { xmlMode: true }
+			parserOptions: { xmlMode: false }
 		}))
 		.pipe(svgSprite({
 			mode: {
@@ -152,18 +147,18 @@ gulp.task('svg-sprite:build', function() {
 				}
 			}
 		}))
-		.pipe(gulp.dest('app/img'));
+		.pipe(gulp.dest(path.build.img));
 });
 
 gulp.task('build', [
 	'html:build',
 	'js:build',
 	'style:build',
-	'fonts:build',
 	'image:build',
 	'pic:build',
 	'svg-sprite:build'
 ]);
+
 
 gulp.task('watch', function(){
 	watch([path.watch.html], function(event, cb) {
@@ -177,9 +172,6 @@ gulp.task('watch', function(){
 	});
 	watch([path.watch.img], function(event, cb) {
 		gulp.start('image:build');
-	});
-	watch([path.watch.fonts], function(event, cb) {
-		gulp.start('fonts:build');
 	});
 });
 

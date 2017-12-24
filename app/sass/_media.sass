@@ -4,28 +4,485 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (max-width : 1200px)
-	/**/
+	.contact-b
+		padding-top: 35px
+		.contact-data
+			display: none
+			a svg
+				top: 4px
+		.contact-data:last-child
+			display: block	
+			a
+				float: left
+			.soc
+				float: right
+				margin-top: 0
+				margin-left: 40px
 
+	.card
+		.btn-group
+			flex-wrap: wrap
+			.btn
+				margin-bottom: .5em
+		.card-body
+			padding: 12px 20px 130px 20px
+
+	.stages-list
+		div[class^=col-]:first-child
+			.stages-item:before
+				width: 20px
+		div[class^=col-]:last-child
+			.stages-item:after
+				width: 20px
+		.stages-item
+			&:after
+				right: -35px
+				width: 70px
+			.stages-icon:before
+				right: 35px
+
+	.feedback
+		&-text
+			margin: 28px 0 20px 0
+		.contact-form
+			margin: 0
+			input
+				width: 100%
+			input[type="submit"]
+				padding: 15px
+
+	.partners
+		.slick-list
+			margin: 0
+		&-slide
+			margin: 0
+			img
+				max-width: 80%
 
 /* Medium Devices, Desktops */
 @media only screen and (max-width : 992px)
-	/**/
+	.logo
+		margin-top: 16px
+		img
+			max-width: 210px
 
+	.navbar
+		position: static
+		&-nav
+			padding-top: 70px
+
+	.navbar.active
+		.close-btn
+			z-index: 1200
+			position: fixed
+			display: block
+			top: 30px
+			right: 30px
+
+	.navbar-expand-lg 
+		& > .container
+			padding-right: 15px
+			padding-left: 15px
+
+	.navbar-collapse
+		z-index: 1001
+		position: fixed
+		top: 0
+		left: 0
+		width: 100%
+		height: 100%
+		overflow-y: auto
+		
+	body.nav-opened:after
+		z-index: 1000
+		opacity: 1
+
+	.navbar-nav
+		text-align: center
+		.nav-item
+			padding: 0
+			border-bottom: 1px solid rgba(124,124,124,.35)
+			&:after
+				display: none
+		.nav-link
+			font-size: 18px
+			color: #fff
+			&:hover,
+			&:focus,
+			&:active
+				color: #eee
+			.nav-arrow-i
+				fill: #fff
+
+	.dropdown-item
+		display: block
+		color: #fff
+		font-weight: 400
+		&:hover,
+		&:focus,
+		&:active
+			color: #eee
+
+	.dropdown-menu
+		padding-top: 0
+		background-image: none
+		box-shadow: none
+		background-color: transparent
+		columns: 1
+		text-align: center
+
+	.card
+		.card-body
+			padding: 12px 20px 100px 20px
+		.btn-group
+			justify-content: flex-start
+			.btn
+				margin-right: 1em
+
+	.promo
+		.slide-text
+			padding-left: 0
+
+	.stages-list
+		div[class^=col-]:first-child
+			.stages-item:before
+				width: 10px
+				left: 5px
+		div[class^=col-]:last-child
+			.stages-item:after
+				width: 10px
+				right: 5px
+		.stages-item
+			&:after
+				right: -15px
+				width: 30px
+			.stages-icon:before
+				right: 5px
+
+	.feedback
+		&-text
+			margin: 0px 0 20px 0
+
+	.partners
+		.slick-list
+			margin: 0
+		&-slider,
+		&-slide
+			height: 100px
+		&-slide
+			max-width: 160px
+			margin: 0
+			line-height: 100px
+			img
+				max-width: 60%
+				max-height: 60px
+
+	.faq .section-content
+		padding-left: 0
 
 /* Small Devices, Tablets */
 @media only screen and (max-width : 768px)
-	/**/
+	.promo
+		.promo-slider,
+		.promo-slide
+			height: 425px
+		
+@media only screen and (max-width : 767px)
+	.container
+		max-width: 100%
 
+	.catalog
+		.card-body
+			padding: 12px 20px 90px 20px
+		.card
+			max-width: 260px
+			.btn-group
+				justify-content: space-between
+				.btn
+					margin-right: 0
+		div[class^=col-]
+			&:nth-child(even) .card
+				margin: 0 auto 0 0
+			&:nth-child(odd) .card
+				margin: 0 0 0 auto
 
+	.advantages-list
+		margin: 40px 0 0 0
+		.advantages-item
+			margin-bottom: 30px
+
+	.contact-b 
+		padding-top: 25px
+		.email
+			display: none
+		.soc
+			margin-left: 0 !important
+		.soc-item + .soc-item
+			margin-left: 10px
+
+	.stages-list
+		margin-top: 15px
+		div[class^=col-]:first-child
+			.stages-item:before
+				width: 110px
+				left: -55px
+		div[class^=col-]:last-child
+			.stages-item:after
+				width: 110px
+				right: -55px
+		.stages-item-text
+			&:after
+				left: 170px
+		.stages-item
+			margin-bottom: 30px
+			&:after
+				right: -55px
+				width: 110px
+			.stages-icon:before
+				right: 24%
+		div[class^=col-]:nth-child(odd)
+			.stages-item:before
+			   content: ''
+			   position: absolute
+			   top: 65px
+			   left: -55px
+			   width: 110px
+			   height: 1px
+			   background-color: #e5e5e5
+
+	.feedback
+		.contact-form
+			max-width: 340px
+			padding: 22px 25px 10px 25px
+			.btn
+				font-size: 14px
+
+	.top-line
+		height: 75px
+
+	.logo
+		margin-top: 15px
+		margin-right: 0
+		img
+			max-width: 155px
+
+	.promo
+		.h1
+			font-size: 30px
+		ul
+			li
+				font-size: 12px
+				&:before
+					top: 7px
+				&:after
+					top: 3px
+
+	.main-footer
+		.fleft,
+		.fright
+			max-width: 150px
+			font-size: 10px
+		.developer
+			margin-top: 7px
+
+	.contacts-row
+		div[class^="col-"]
+			text-align: center !important
+			.contacts-where i
+				margin: 12px auto 0 auto !important
+
+	.breadcrumb
+		margin-bottom: 10px
+
+@media only screen and (max-width : 576px)
+	.catalog
+		.card-body
+			padding: 12px 20px 90px 20px
+		.card
+			max-width: 100%
+			.btn-group
+				justify-content: center
+				.btn
+					margin: 0 .5em
+			&-title
+				text-align: center
+			&-text
+				width: auto
+				margin: .5em auto
+			&-info
+				text-align: center
+		div[class^=col-]
+			&:nth-child(even) .card
+				margin: 0
+			&:nth-child(odd) .card
+				margin: 0
+
+	.advantages-list
+		.advantages-item
+			width: 50%
+
+	.stages-list
+		&:nth-child(2n + 1)
+			.stages-item:before
+			   content: ''
+			   position: absolute
+			   top: 57px
+			   left: -30px
+			   width: 60px
+			   height: 1px
+			   background-color: #e5e5e5
+		div[class^=col-]:nth-child(odd)
+			.stages-item:before
+			   display: none
+		.col-sm-6
+			width: 50%
+		div[class^=col-]:first-child
+			.stages-item:before
+				display: none				
+		div[class^=col-]:last-child
+			.stages-item:after
+				display: none
+		.stages-item
+			&:after
+				display: none
+			.stages-icon:before
+				right: 30%
+			svg
+				width: 38px
+				height: 38px
+		.stages-icon
+			&:before
+				width: 20px
+				height: 20px
+				font-size: 12px
+				line-height: 20px
+			&:after
+				width: 82px
+				height: 82px
+				margin-top: -41px
+				margin-left: -41px
+		.stages-item-text
+			padding-top: 0
+
+	.feedback
+		&-text
+			display: none
+		.contact-form
+			max-width: 100%
+			width: 100%
+			padding: 22px 40px 10px 40px
+			.title
+				font-size: 22px
+			.btn
+				font-size: 14px
+		
 /* Extra Small Devices, Phones */
 @media only screen and (max-width : 480px)
-	/**/
+	h1
+		font-size: 26px
 
+	h2
+		font-size: 22px
+
+	h3
+		font-size: 18px
+		
+	h4
+		font-size: 14px
+
+	h5
+		font-size: 12px
+
+	h6
+		font-size: 10px
 
 /* Custom, iPhone Retina */
 @media only screen and (max-width : 320px)
-	/**/
+	.btn
+		padding: 10px 25px
+		font-weight: 400
+		font-size: 10.6px
 
+	.promo
+		.promo-slider,
+		.promo-slide
+			height: 320px
+			.slide-wrap
+				padding: 25px 0 60px 0
+		ul li
+			margin-bottom: 10px
+
+	p,
+	.advantages .section-content p
+		font-size: 12px
+
+	.section-title,
+	.article h1
+		margin: 0 0 18px 0
+		font-size: 18px
+
+	.seo-box
+		.section-title
+			font-size: 16px
+	
+	.filter
+		margin: 18px 0
+	
+	.filter-item
+		padding: 6px 4px
+		font-size: 10.8px
+		&.active
+			padding: 6px 17px
+
+	.log-i
+		height: 25px
+
+	.advantages-list
+		.advantages-item
+			font-size: 9.4px
+			svg
+				margin: 0 auto 10px auto
+
+	.stages-list .stages-item
+		.stages-icon:before
+			right: 26%
+
+	.stages-list
+		margin-top: 30px
+
+	.stages-item-text
+		font-size: 11.6px
+
+	.contact-form
+		.title
+			font-size: 18px
+
+	.partners
+		&-slider
+			height: 55px
+		&-slide
+			height: 55px
+			line-height: 55px
+			max-width: 65px
+			img
+				max-width: 80%
+				max-height: 30px
+
+	.article
+		img
+			max-width: 100%
+			margin-right: 0 !important
+			margin-left: 0 !important
+
+	.contacts-where
+		font-size: 16px
+
+	.contacts-head
+		font-size: 14px
+
+	.faq-b
+		p
+			font-size: 10px
 
 /*==========  Mobile First  ==========*/
 
@@ -51,5 +508,6 @@
 
 /* Large Devices, Wide Screens */
 @media only screen and (min-width : 1200px)
-	/**/
+	.container
+		max-width: 1170px
 
