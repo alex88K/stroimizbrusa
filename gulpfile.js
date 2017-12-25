@@ -95,7 +95,7 @@ gulp.task('style:build', function() {
 	.pipe(sass({outputStyle: 'expand'}).on("error", notify.onError()))
 	.pipe(rename({suffix: '.min', prefix : ''}))
 	.pipe(autoprefixer(['last 15 versions']))
-	.pipe(cleanCSS()) // Опционально, закомментировать при отладке
+	// .pipe(cleanCSS()) // Опционально, закомментировать при отладке
 	.pipe(gulp.dest(path.build.css))
 	.pipe(reload({stream: true}));
 });
