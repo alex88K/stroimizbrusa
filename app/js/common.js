@@ -68,6 +68,37 @@ $(function() {
 		$(this).attr('src', newSrc);
 	});
 
+
+	$('.product-slider').slick({
+		slidesToShow: 1,
+		slidesToScroll: 1,
+		arrows: false,
+		dots: false,
+		fade: true,
+		asNavFor: '.product-slider-nav'
+	});
+
+	$('.product-slider-nav').slick({
+		slidesToShow: 3,
+		slidesToScroll: 1,
+		vertical: true,
+		asNavFor: '.product-slider',
+		nextArrow: '<button type="button" class="slick-next"><svg class="arrow-i arrow-next-i"><use xlink:href="#nav-arrow"></use></svg></button>',
+		prevArrow: '<button type="button" class="slick-prev"><svg class="arrow-i arrow-prev-i"><use xlink:href="#nav-arrow"></use></svg></button>',
+		dots: false,
+		centerMode: false,
+		focusOnSelect: true,
+		arrows: true,
+		responsive: [
+		{
+			breakpoint: 576,
+			settings: {
+				vertical: false,
+			}
+		}]
+	});
+
+
 /*--Search form-----------------------*/
 
 	$('.search-btn').on('click', function(e) {
@@ -112,7 +143,7 @@ $(document).on('af_complete', function(event,response) {
 	'use strict';
 
 	var file     = 'img/sprite.svg',
-	revision = 1;
+	revision = 2;
 
 	if( !document.createElementNS || !document.createElementNS( 'http://www.w3.org/2000/svg', 'svg' ).createSVGRect )
 		return true;
