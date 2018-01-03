@@ -150,7 +150,7 @@
 										<li>Начало повседневной работы по</li>
 										<li>Начало повседневной работы</li>
 									</ul>
-									<button class="btn" data-toggle="modal" data-target="#callback-modal">Записаться онлайн</button>
+									<button class="btn" data-toggle="modal" data-target="#success-modal">Записаться онлайн</button>
 								</div>
 							</div>
 						</div>
@@ -165,10 +165,20 @@
 					</header>
 					<div class="section-content">
 						
-						<div class="filter">
+					<!-- 	<div class="filter">
 							<button type="button" class="active filter-item">Дома</button>
 							<button type="button" class="filter-item">Проектирование</button>
 							<button type="button" class="filter-item">Бани</button>
+						</div>
+			 -->
+						<div class="filter">
+							<form action="http://test.crashsite.ru/" method="post" id="mse2_filters">
+								<fieldset id="mse2_resource|parent">
+									<label for="mse2_resource|parent_0" class="active">
+										<input type="checkbox" name="resource|parent" id="mse2_resource|parent_0" value="8" class=""> Дома
+									</label>
+							</form>
+								</fieldset>
 						</div>
 			
 						<div class="catalog">
@@ -439,13 +449,11 @@
 <div class="modal fade" id="success-modal" tabindex="-1" role="dialog" aria-labelledby="success-modal" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
-			<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-				<span aria-hidden="true"><svg class="close-i"><use xlink:href="#close"></use></svg></span>
-			</button>
+			<button type="button" class="close-btn close-btn__light" data-dismiss="modal">&nbsp;</button>
 			<div class="modal-header">
 				<h5 class="modal-title" id="success-modal-title">Сообщение отправлено</h5>
-				<p class="modal-subtitle">Мы скоро с вами свяжемся</p>
 			</div>
+			<p class="modal-success-text">Мы скоро с вами свяжемся</p>
 		</div>
 	</div>
 </div>

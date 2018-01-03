@@ -1,5 +1,15 @@
 $(function() {
 
+	$(".read-more").on("click", function() {
+		$(this).toggleClass("opened").siblings(".feedbacks-text").toggleClass("opened");
+		
+		if ($(this).hasClass("opened")) {
+			$(this).html("Скрыть" + "<svg class='arrow-i'><use xlink:href='#nav-arrow'></use></svg>");
+		} else {
+			$(this).html("Читать полностью" + "<svg class='arrow-i'><use xlink:href='#nav-arrow'></use></svg>");
+		}
+	});
+
 	// Fancybox
 
 	$("[data-fancybox]").fancybox();

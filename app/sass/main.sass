@@ -609,14 +609,17 @@ input.error
 .filter
 	margin: 25px 0
 	text-align: center
-	&-item
+	&-item,
+	fieldset label
 		display: inline-block
 		margin: 0 2px
 		padding: 6px 16px
 		background-color: transparent
 		border-radius: 25px
 		color: $dark-brown
+		font-family: $font
 		font-weight: 600
+		text-transform: capitalize
 		font-size: 14px
 		border: none
 		cursor: pointer
@@ -625,6 +628,8 @@ input.error
 			background-image: linear-gradient(to left, rgba(39,174,95,1) 0%, rgba(46,194,110,1) 100%)
 		&:focus
 			outline: none
+		input
+			display: none
 
 .card
 	height: 100%
@@ -1136,6 +1141,10 @@ input.error
 			
 // Feedbacks
 
+.feedbacks
+	div[class^="col-"]
+		align-self: flex-start
+
 .feedbacks-list
 	margin-top: 10px
 	div[class^="col-"]
@@ -1160,10 +1169,26 @@ input.error
 		font-weight: 600
 		color: #333
 	.feedbacks-text
+		position: relative
+		max-height: 70px
 		margin: 0
 		font-size: 12px
 		line-height: 1.5
 		color: #666
+		overflow: hidden
+		transition: all 1.5s ease-in-out
+		&:after
+			content: ''
+			position: absolute
+			bottom: 0
+			left: 0
+			width: 100%
+			height: 18px
+			background: linear-gradient(to top, #fff 0%, rgba(255,255,255,0) 100%)
+		&.opened
+			max-height: 2000px
+			&:after
+				display: none
 	.feedbacks-content
 		margin-left: 80px
 		padding-top: 4px
@@ -1172,22 +1197,34 @@ input.error
 	height: 100%
 	padding: 12px 15px
 	background-color: #fff
-	transition: all .3s ease
 	&:hover
 		box-shadow: 0 0 25px rgba(0,0,0,.1)
 
 .read-more
+	padding: 0
 	font-size: 10px
 	font-weight: 600
 	color: #333
+	background-color: transparent
+	border: none
+	cursor: pointer
 	&:hover
 		color: #888
+	&:focus
+		outline: none
 	svg
 		display: inline-block
 		width: 8px
 		height: 8px
 		margin-left: 8px
 		vertical-align: middle
+	&.opened
+		svg
+			transform: rotate(180deg)
+
+.text-center .btn-more,
+#mse2_mfilter .btn_more
+	width: auto !important
 
 // Gallery
 
@@ -1379,10 +1416,18 @@ input.error
 	font-size: 24px
 	font-weight: normal 
 	color: #333
+	text-align: center
 
 .modal-backdrop
 	background-color: #434343
 	&.show
 		opacity: .63
+
+.modal-success-text
+	margin: 1em 0 2em 0
+	text-align: center
+
+#success-modal .modal-content
+	padding: 1em
 
 @import "media"
